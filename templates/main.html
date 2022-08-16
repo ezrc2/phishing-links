@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<style>
+    html,
+    body {
+        height: 75%;
+    }
+
+    html {
+        display: table;
+        margin: auto;
+    }
+
+    body {
+        display: table-cell;
+        vertical-align: middle;
+        position: relative;
+    }
+
+    form {
+        text-align: left;
+        width: 100%;
+    }
+</style>
+
+<head>
+    <title>Phishing Link Detector</title>
+</head>
+
+<h1>Enter a suspicious link below:</h1>
+
+<form method="POST">
+    <input name="text">
+    <input type="submit">
+</form>
+
+<div class="result">
+    {% if result %}
+    <br>
+    <p style="font-size:25px; text-align:center; color:black">{{result}}</p>
+    {% endif %}
+</div>
+
+</html>

@@ -17,28 +17,23 @@
         vertical-align: middle;
         position: relative;
     }
-
-    form {
-        text-align: left;
-        width: 100%;
-    }
 </style>
 
 <head>
     <title>Phishing Link Detector</title>
 </head>
 
-<h1>Enter a suspicious link below:</h1>
+<h1>Enter a suspicious url below:</h1>
 
 <form method="POST">
-    <input name="text">
+    <input name="text", size="75">
     <input type="submit">
 </form>
 
-<div class="result">
+<div class="link result">
     {% if result %}
     <br>
-    <p style="font-size:25px; text-align:center; color:black">{{result}}</p>
+    <p style="font-size:18px; text-align:center; color:black"> The model predicts that <br><br> <b>{{link}}</b> <br><br> is a <u>{{result}}</u> link. </p>
     {% endif %}
 </div>
 

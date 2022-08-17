@@ -25,20 +25,18 @@ def main():
 
 @app.route('/', methods=['POST'])
 def form():
-    link = request.form['text']
-    print('-----------------------')
-    print(link)
-    print('-----------------------')
+    url = request.form['text']
 
-    link_features = pd.DataFrame([extract_url_features(link)], columns=cols)
+    if url.strip() == '':
+        return render_template('main.html', link=url, result='Please enter a link')
+
+    link_features = pd.DataFrame([extract_url_features(url)], columns=cols)
     link_features.drop(columns=['url', 'nb_redirection', 'nb_external_redirection'], inplace=True)
 
     pred = model.predict(link_features[features])
-    s = 'legitimate' if pred == 0 else 'phishing'
+    response = 'legitimate' if pred == 0 else 'phishing'
 
-    response = f'The model predicts that {link} is a {s} link.'
-
-    return render_template('main.html', result=response)
+    return render_template('main.html', link=url, result=response)
 
 
 if __name__ == '__main__':
